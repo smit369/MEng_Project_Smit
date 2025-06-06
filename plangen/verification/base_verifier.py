@@ -2,9 +2,13 @@
 Base verifier interface for domain-agnostic verification.
 """
 
+import logging
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional, Tuple
 
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 class BaseVerifier(ABC):
     """Abstract base class for solution verifiers.
@@ -31,6 +35,9 @@ class BaseVerifier(ABC):
             - 'score': Numerical score (0-100) indicating solution quality
             - 'reason': Explanation of verification result
         """
+        logger.debug(f"Verifying solution for problem: {problem_statement[:100]}...")
+        logger.debug(f"Solution to verify: {solution[:100]}...")
+        logger.debug(f"Constraints to check: {constraints}")
         pass
 
     @abstractmethod
@@ -43,6 +50,7 @@ class BaseVerifier(ABC):
         Returns:
             True if this verifier can handle the problem, False otherwise
         """
+        logger.debug(f"Checking if verifier is applicable to problem: {problem_statement[:100]}...")
         pass
 
     @abstractmethod
@@ -58,4 +66,6 @@ class BaseVerifier(ABC):
         Returns:
             List of domain-specific constraints
         """
+        logger.debug(f"Extracting domain constraints from problem: {problem_statement[:100]}...")
+        logger.debug(f"General constraints: {general_constraints}")
         pass

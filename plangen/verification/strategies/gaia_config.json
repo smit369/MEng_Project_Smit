@@ -1,0 +1,8 @@
+{
+    "enable_unsafe_ops": false,
+    "use_vector_similarity": true,
+    "similarity_threshold": 0.8,
+    "pass_threshold": 0.6,
+    "constraint_weight": 0.7,
+    "structure_weight": 0.3
+} 
