@@ -1,0 +1,68 @@
+{
+  "overall_metrics": {
+    "total": 10,
+    "correct": 0,
+    "refusals": 0,
+    "accuracy": 0.0,
+    "refusal_rate": 0.0
+  },
+  "level_metrics": {
+    "level_1": {
+      "total": 3,
+      "correct": 0,
+      "refusals": 0,
+      "accuracy": 0.0,
+      "refusal_rate": 0.0
+    },
+    "level_2": {
+      "total": 7,
+      "correct": 0,
+      "refusals": 0,
+      "accuracy": 0.0,
+      "refusal_rate": 0.0
+    },
+    "level_3": {
+      "total": 0,
+      "correct": 0,
+      "refusals": 0,
+      "accuracy": 0,
+      "refusal_rate": 0
+    }
+  },
+  "predictions": [
+    "societal",
+    "94111",
+    "approximately 1",
+    ".dot",
+    "50000",
+    "the dark knight",
+    "13",
+    "According to the abstract of a research article published in Science Advances in 2021",
+    "Here's the formatted answer: 09/29/05",
+    "Here's the formatted answer: 55"
+  ],
+  "ground_truth": [
+    "egalitarian",
+    "34689",
+    "41",
+    "backtick",
+    "17",
+    "Time-Parking 2: Parallel Universe",
+    "3",
+    "142",
+    "04/15/18",
+    "3"
+  ],
+  "levels": [
+    "2",
+    "2",
+    "2",
+    "2",
+    "1",
+    "2",
+    "1",
+    "2",
+    "2",
+    "1"
+  ]
+}

@@ -1,0 +1,321 @@
+[
+  {
+    "problem": "A paper about AI regulation that was originally submitted to arXiv.org in June 2022 shows a figure with three axes, where each axis has a label word at both ends. Which of these words is used to describe a type of society in a Physics and Society article submitted to arXiv.org on August 11, 2016?",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "egalitarian",
+      "task_id": "c61d22de-5f6c-4958-a7f6-5e9707bd3466",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Go to arxiv.org and navigate to the Advanced Search page.\n2. Enter \"AI regulation\" in the search box and select \"All fields\" from the dropdown.\n3. Enter 2022-06-01 and 2022-07-01 into the date inputs, select \"Submission date (original)\", and submit the search.\n4. Go through the search results to find the article that has a figure with three axes and labels on each end of the axes, titled \"Fairness in Agreement With European Values: An Interdisciplinary Perspective on AI Regulation\".\n5. Note the six words used as labels: deontological, egalitarian, localized, standardized, utilitarian, and consequential.\n6. Go back to arxiv.org\n7. Find \"Physics and Society\" and go to the page for the \"Physics and Society\" category.\n8. Note that the tag for this category is \"physics.soc-ph\".\n9. Go to the Advanced Search page.\n10. Enter \"physics.soc-ph\" in the search box and select \"All fields\" from the dropdown.\n11. Enter 2016-08-11 and 2016-08-12 into the date inputs, select \"Submission date (original)\", and submit the search.\n12. Search for instances of the six words in the results to find the paper titled \"Phase transition from egalitarian to hierarchical societies driven by competition between cognitive and social constraints\", indicating that \"egalitarian\" is the correct answer.",
+        "Number of steps": "12",
+        "How long did this take?": "8 minutes",
+        "Tools": "1. Web browser\n2. Image recognition tools (to identify and parse a figure with three axes)",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 8.916854858398437e-06
+  },
+  {
+    "problem": "I\u2019m researching species that became invasive after people who kept them as pets released them. There\u2019s a certain species of fish that was popularized as a pet by being the main character of the movie Finding Nemo. According to the USGS, where was this fish found as a nonnative species, before the year 2020? I need the answer formatted as the five-digit zip codes of the places the species was found, separated by commas if there is more than one place.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "34689",
+      "task_id": "17b5a6a3-bc87-42e8-b0fb-6ab0781ef2cc",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Search the web for \u201cfinding nemo main character\u201d.\n2. Note the results, which state that the main character is a clownfish.\n3. Search the web for \u201cusgs nonnative species database\u201d.\n4. Click result for the Nonindigenous Aquatic Species site.\n5. Click \u201cMarine Fishes\u201d.\n6. Click \u201cSpecies List of Nonindigenous Marine Fish\u201d.\n7. Scroll through the list until I find the clown anenomefish, and click \u201cCollection info\u201d.\n8. Note the place that a clown anenomefish was found, in Fred Howard Park at the Gulf of Mexico.\n9. Search the web for \u201cfred howard park florida zip code\u201d.\n10. Note the zip code, 34689. Since only one clownfish was found before the year 2020, this is the answer.",
+        "Number of steps": "10",
+        "How long did this take?": "5 minutes",
+        "Tools": "1. Search engine\n2. Web browser",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 5.14984130859375e-06
+  },
+  {
+    "problem": "If we assume all articles published by Nature in 2020 (articles, only, not book reviews/columns, etc) relied on statistical significance to justify their findings and they on average came to a p-value of 0.04, how many papers would be incorrect as to their claims of statistical significance? Round the value up to the next integer.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "41",
+      "task_id": "04a04a9b-226c-43fd-b319-d5e89743676f",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Find how many articles were published in Nature in 2020 by Googling \"articles submitted to nature 2020\"\n2. Click through to Nature's archive for 2020 and filter the results to only provide articles, not other types of publications: 1002\n3. Find 4% of 1002 and round up: 40.08 > 41",
+        "Number of steps": "3",
+        "How long did this take?": "5 minutes",
+        "Tools": "1. search engine\n2. calculator",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 3.933906555175781e-06
+  },
+  {
+    "problem": "In Unlambda, what exact charcter or text needs to be added to correct the following code to output \"For penguins\"? If what is needed is a character, answer with the name of the character. If there are different names for the character, use the shortest. The text location is not needed. Code:\n\n`r```````````.F.o.r. .p.e.n.g.u.i.n.si",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "backtick",
+      "task_id": "14569e28-c88c-43e4-8c32-097d35b9a67d",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Searched \"Unlambda syntax\" online (optional).\n2. Opened https://en.wikipedia.org/wiki/Unlambda.\n3. Note that the hello world program is very similar in syntax to the code in this question.\n4. Go to the source referenced by the hello world program.\n5. From the referenced source, read what the components of the program do to understand that each period needs a backtick after the initial `r.\n6. Observe that in the given code, there are 12 periods but only 11 backticks after the initial `r, so the missing character is a backtick.",
+        "Number of steps": "6",
+        "How long did this take?": "15 minutes",
+        "Tools": "1. Web browser\n2. Search engine\n3. Unlambda compiler (optional)",
+        "Number of tools": "3"
+      }
+    },
+    "processing_time_minutes": 3.751118977864583e-06
+  },
+  {
+    "problem": "If Eliud Kipchoge could maintain his record-making marathon pace indefinitely, how many thousand hours would it take him to run the distance between the Earth and the Moon its closest approach? Please use the minimum perigee value on the Wikipedia page for the Moon when carrying out your calculation. Round your result to the nearest 1000 hours and do not use any comma separators if necessary.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "1",
+      "ground_truth": "17",
+      "task_id": "e1fc63a2-da7a-432f-be78-7c4a95598703",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Googled Eliud Kipchoge marathon pace to find 4min 37sec/mile\n2. Converted into fractions of hours.\n3. Found moon periapsis in miles (225,623 miles).\n4. Multiplied the two to find the number of hours and rounded to the nearest 100 hours.",
+        "Number of steps": "4",
+        "How long did this take?": "20 Minutes",
+        "Tools": "1. A web browser.\n2. A search engine.\n3. A calculator.",
+        "Number of tools": "3"
+      }
+    },
+    "processing_time_minutes": 3.6835670471191405e-06
+  },
+  {
+    "problem": "The attached spreadsheet shows the inventory for a movie and video game rental store in Seattle, Washington. What is the title of the oldest Blu-Ray recorded in this spreadsheet? Return it as appearing in the spreadsheet.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "Time-Parking 2: Parallel Universe",
+      "task_id": "32102e3e-d12a-4209-9163-7b3a104efe5d",
+      "file_name": "32102e3e-d12a-4209-9163-7b3a104efe5d.xlsx",
+      "file_path": "/Users/smitpatel/.cache/huggingface/hub/datasets--gaia-benchmark--GAIA/snapshots/897f2dfbb5c952b5c3c1509e648381f9c7b70316/2023/validation/32102e3e-d12a-4209-9163-7b3a104efe5d.xlsx",
+      "annotator_metadata": {
+        "Steps": "1. Open the attached file.\n2. Compare the years given in the Blu-Ray section to find the oldest year, 2009.\n3. Find the title of the Blu-Ray disc that corresponds to the year 2009: Time-Parking 2: Parallel Universe.",
+        "Number of steps": "3",
+        "How long did this take?": "1 minute",
+        "Tools": "1. Microsoft Excel",
+        "Number of tools": "1"
+      }
+    },
+    "processing_time_minutes": 3.619988759358724e-06
+  },
+  {
+    "problem": "How many studio albums were published by Mercedes Sosa between 2000 and 2009 (included)? You can use the latest 2022 version of english wikipedia.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "1",
+      "ground_truth": "3",
+      "task_id": "8e867cd7-cff9-4e6c-867a-ff5ddc2550be",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. I did a search for Mercedes Sosa\n2. I went to the Wikipedia page for her\n3. I scrolled down to \"Studio albums\"\n4. I counted the ones between 2000 and 2009",
+        "Number of steps": "4",
+        "How long did this take?": "5 minutes",
+        "Tools": "1. web browser\n2. google search",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 3.631909688313802e-06
+  },
+  {
+    "problem": "The object in the British Museum's collection with a museum number of 2012,5015.17 is the shell of a particular mollusk species. According to the abstract of a research article published in Science Advances in 2021, beads made from the shells of this species were found that are at least how many thousands of years old?",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "142",
+      "task_id": "3627a8be-a77f-41bb-b807-7e1bd4c0ebdf",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Use search engine to search for \"British Museum search collection\" and navigate to the British Museum's collection search webpage.\n2. Select \"Museum number\" as search field and \"2012,5015.17\" in text box, then run search.\n3. Open the page for the single result and note that the description says that this is the shell of an individual of the Nassa gibbosula species.\n4. Use search engine to search for \"Nassa gibbosula\".\n5. Note that according to the search result from the World Register of Marine Species website, Nassa gibbosula is not an accepted species name.\n6. Open the page for Nassa gibbosula on the World Register of Marine Species website.\n7. Scan the page and note that the accepted species name is Tritia gibbosula.\n8. Use search engine to search for \"Science Advances 2021 Tritia gibbosula\".\n9. Find that the top result is an article from 2021 in Science Advances titled \"Early Middle Stone Age personal ornaments from Bizmoune Cave, Essaouira, Morocco\".\n10. Scan abstract and note that the article discusses beads made from Tritia gibbosula shells that date to at least 142 thousand years ago, giving a final answer of 142.",
+        "Number of steps": "10",
+        "How long did this take?": "12 minutes",
+        "Tools": "1. Web browser\n2. Search engine",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 3.516674041748047e-06
+  },
+  {
+    "problem": "According to github, when was Regression added to the oldest closed numpy.polynomial issue that has the Regression label in MM/DD/YY?",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "2",
+      "ground_truth": "04/15/18",
+      "task_id": "7619a514-5fa8-43ef-9143-83b66a43d7a4",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "1. Searched \"numpy github\" on Google search.\n2. Opened the NumPy GitHub page.\n3. Clicked \"Issues\" in the repo tabs.\n4. Clicked \"Closed\" on the filter bar.\n5. Set the filter to the \"numpy.polynomial\" label.\n6. Set the filter to the \"06 - Regression\" label.\n7. Opened the oldest Regression post.\n8. Scrolled down to find when the Regression label was added (Apr 15, 2018).\n9. Converted to MM/DD/YY (04/15/18).",
+        "Number of steps": "9",
+        "How long did this take?": "10 minutes",
+        "Tools": "1. Web browser\n2. Search engine",
+        "Number of tools": "2"
+      }
+    },
+    "processing_time_minutes": 3.516674041748047e-06
+  },
+  {
+    "problem": "Here's a fun riddle that I think you'll enjoy.\n\nYou have been selected to play the final round of the hit new game show \"Pick That Ping-Pong\". In this round, you will be competing for a large cash prize. Your job will be to pick one of several different numbered ping-pong balls, and then the game will commence. The host describes how the game works.\n\nA device consisting of a winding clear ramp and a series of pistons controls the outcome of the game. The ramp feeds balls onto a platform. The platform has room for three ping-pong balls at a time. The three balls on the platform are each aligned with one of three pistons. At each stage of the game, one of the three pistons will randomly fire, ejecting the ball it strikes. If the piston ejects the ball in the first position on the platform the balls in the second and third position on the platform each advance one space, and the next ball on the ramp advances to the third position. If the piston ejects the ball in the second position, the ball in the first position is released and rolls away, the ball in the third position advances two spaces to occupy the first position, and the next two balls on the ramp advance to occupy the second and third positions on the platform. If the piston ejects the ball in the third position, the ball in the first position is released and rolls away, the ball in the second position advances one space to occupy the first position, and the next two balls on the ramp advance to occupy the second and third positions on the platform.\n\nThe ramp begins with 100 numbered ping-pong balls, arranged in ascending order from 1 to 100. The host activates the machine and the first three balls, numbered 1, 2, and 3, advance to the platform. Before the random firing of the pistons begins, you are asked which of the 100 balls you would like to pick. If your pick is ejected by one of the pistons, you win the grand prize, $10,000.\n\nWhich ball should you choose to maximize your odds of winning the big prize? Please provide your answer as the number of the ball selected.",
+    "enhanced_problems": [],
+    "all_constraints": [],
+    "early_verification_results": [],
+    "solutions": [],
+    "verification_results": [],
+    "selected_solution": null,
+    "best_of_n_metadata": {
+      "plans": [],
+      "best_idx": -1
+    },
+    "applied_decorators": [],
+    "instruction_texts": [],
+    "error": "'PlanGENConfig' object has no attribute 'get_adaptive_decorators'",
+    "gaia_metadata": {
+      "level": "1",
+      "ground_truth": "3",
+      "task_id": "ec09fa32-d03f-4bf8-84b0-1f16922c3ae4",
+      "file_name": "",
+      "file_path": "",
+      "annotator_metadata": {
+        "Steps": "Step 1: Evaluate the problem statement provided in my user's prompt\nStep 2: Consider the probability of any ball on the platform earning the prize.\nStep 3: Evaluate the ball in position one. The probability of it earning the prize, P1, is 1/3\nStep 4: Using a calculator, evaluate the ball in position two. The probability of it earning the prize, P2, is the difference between 1 and the product of the complementary probabilities for each trial\nP2 = 1 - (2/3)(2/3)\nP2 = 5/9\nStep 5: Using a calculator, evaluate the ball in position three. The probability of it earning the prize, P3, is the difference between 1 and the product of the complementary probabilities for each trial\nP3 = 1 - (2/3)(2/3)(2/3)\nP3 = 19/27\nStep 6: Consider the possible outcomes of numbers higher than 3.\nStep 7: For each trial, either 1 or 2 balls from the ramp will advance to the platform. For any given selection, there is a 50% chance that the ball advances to position 2 or position 3.\nStep 8: As position three holds the highest chance of earning the prize, select the only ball known to occupy position three with certainty, ball 3.\nStep 9: Report the correct answer to my user, \"3\"",
+        "Number of steps": "9",
+        "How long did this take?": "1 minute",
+        "Tools": "None",
+        "Number of tools": "0"
+      }
+    },
+    "processing_time_minutes": 3.5007794698079428e-06
+  },
+  {
+    "runtime_metadata": {
+      "total_runtime_minutes": 9.797016779581706e-05,
+      "average_time_per_sample_minutes": 9.797016779581706e-06,
+      "total_samples_processed": 10,
+      "successful_samples": 0,
+      "config_source": "plangen_config.yaml"
+    }
+  }
+]

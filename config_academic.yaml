@@ -1,0 +1,46 @@
+plangen:
+  best_of_n:
+    n_plans: 6
+    num_solutions: 2
+    parallel: true
+    sampling_strategy: diverse
+  evaluation:
+    num_samples: null
+    output_dir: results_academic
+    save_formats:
+    - json
+    - csv
+  model:
+    model_type: ollama
+    name: llama3:8b
+    temperature: 0.5
+prompt_decorators:
+  decorator_configs:
+    CiteSources:
+      comprehensive: true
+      format: Chicago
+      style: footnote
+    FactCheck:
+      confidence: 0.95
+      strictness: high
+    PeerReview:
+      criteria:
+      - accuracy
+      - clarity
+      - completeness
+      - originality
+      style: critical
+    Reasoning:
+      depth: comprehensive
+  enabled_decorators:
+  - Reasoning
+  - CiteSources
+  - FactCheck
+  - PeerReview
+verification:
+  agent:
+    temperature: 0.1
+    type: robust
+  gaia_verifier:
+    temperature: 0.1
+    type: llm

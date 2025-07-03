@@ -1,0 +1,39 @@
+# Include registry files in the package distribution
+recursive-include prompt_decorators/registry *.json
+recursive-include prompt_decorators/registry *.yml
+recursive-include prompt_decorators/registry *.yaml
+
+# Include documentation files
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+
+# Include configuration files
+include pyproject.toml
+include setup.cfg
+include .pre-commit-config.yaml
+
+# Include schema files
+recursive-include schemas *.json
+recursive-include schemas *.yaml
+
+# Include type information
+include prompt_decorators/py.typed
+
+# Exclude development and build artifacts
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .pytest_cache
+global-exclude .mypy_cache
+global-exclude .coverage
+global-exclude htmlcov
+global-exclude dist
+global-exclude build
+global-exclude *.egg-info

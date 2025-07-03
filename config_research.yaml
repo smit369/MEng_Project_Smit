@@ -1,0 +1,87 @@
+adaptive_config:
+  enabled: true
+  problem_types:
+    analysis:
+      decorators:
+      - Socratic
+      - Reasoning
+      - FactCheck
+      reasoning_depth: comprehensive
+      socratic_iterations: 5
+    debate:
+      citation_comprehensive: true
+      debate_perspectives: 5
+      decorators:
+      - Debate
+      - PeerReview
+      - CiteSources
+    math:
+      decorators:
+      - StepByStep
+      - Reasoning
+      - FactCheck
+      fact_check_strictness: high
+      reasoning_depth: comprehensive
+logging:
+  detailed:
+    log_decorator_applications: true
+    log_plan_generation: true
+    log_timing: true
+    log_verification_scores: true
+  level: DEBUG
+performance:
+  parallel:
+    enabled: true
+    max_workers: 8
+  timeouts:
+    plan_generation: 600
+    total_per_sample: 3600
+    verification: 180
+plangen:
+  best_of_n:
+    n_plans: 10
+    num_solutions: 3
+    parallel: true
+    sampling_strategy: diverse
+  evaluation:
+    num_samples: null
+    output_dir: results_research
+    save_formats:
+    - json
+    - csv
+  model:
+    model_type: ollama
+    name: llama3:8b
+    temperature: 0.7
+prompt_decorators:
+  decorator_configs:
+    CiteSources:
+      comprehensive: true
+      format: APA
+      style: inline
+    Debate:
+      balanced: true
+      perspectives: 4
+    FactCheck:
+      confidence: 0.9
+      strictness: high
+    PeerReview:
+      criteria:
+      - accuracy
+      - clarity
+      - completeness
+      style: constructive
+    Reasoning:
+      depth: comprehensive
+    Socratic:
+      iterations: 5
+    StepByStep:
+      numbered: true
+  enabled_decorators:
+  - StepByStep
+  - Reasoning
+  - Socratic
+  - Debate
+  - PeerReview
+  - CiteSources
+  - FactCheck

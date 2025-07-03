@@ -1,0 +1,34 @@
+adaptive_config:
+  enabled: false
+performance:
+  parallel:
+    enabled: true
+    max_workers: 2
+  timeouts:
+    plan_generation: 60
+    total_per_sample: 300
+    verification: 30
+plangen:
+  best_of_n:
+    n_plans: 3
+    num_solutions: 1
+    parallel: true
+    sampling_strategy: basic
+  evaluation:
+    num_samples: 1
+    output_dir: results_fast_test
+    save_formats:
+    - json
+  model:
+    model_type: ollama
+    name: llama3:8b
+    temperature: 0.3
+prompt_decorators:
+  decorator_configs:
+    Reasoning:
+      depth: basic
+    StepByStep:
+      numbered: true
+  enabled_decorators:
+  - StepByStep
+  - Reasoning

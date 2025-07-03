@@ -1,0 +1,87 @@
+name: Code Quality and Testing
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+# Set minimum required permissions
+permissions:
+  contents: read  # Only needs read access to repository content
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --with mcp
+          # Install required dependencies directly as well, so they're available to pre-commit hooks
+          pip install pre-commit mypy pytest pydantic
+          pip install -e .
+      - name: Run pre-commit
+        run: pre-commit run --all-files
+
+  test-matrix:
+    needs: pre-commit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --with mcp
+      - name: Run tests
+        run: poetry run pytest
+      - name: Run tests with coverage
+        run: poetry run pytest --cov=prompt_decorators tests/
+
+  type-check:
+    needs: pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry mypy
+          poetry install --with mcp
+      - name: Run mypy
+        run: poetry run mypy prompt_decorators
+
+  docstring-check:
+    needs: pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --with mcp
+      - name: Check docstrings
+        run: python scripts/standardize_docstrings.py prompt_decorators --check

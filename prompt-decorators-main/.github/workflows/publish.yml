@@ -1,0 +1,116 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [created]
+
+# Set permissions for trusted publishing
+permissions:
+  contents: read  # Only needs read access to repository content
+  id-token: write  # IMPORTANT: mandatory for trusted publishing
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify version consistency
+        run: |
+          # Install Poetry to read version from pyproject.toml
+          pip install poetry
+
+          # Extract version from pyproject.toml
+          VERSION=$(poetry version -s)
+
+          # Extract the GitHub tag (strip leading 'v' if present)
+          GITHUB_TAG=${GITHUB_REF#refs/tags/}
+          GITHUB_TAG=${GITHUB_TAG#v}
+
+          echo "Package version from pyproject.toml: $VERSION"
+          echo "GitHub release tag: $GITHUB_TAG"
+
+          # Verify they match
+          if [ "$VERSION" != "$GITHUB_TAG" ]; then
+            echo "Error: Version mismatch between pyproject.toml ($VERSION) and GitHub tag ($GITHUB_TAG)"
+            echo "Please run scripts/bump_version.py to update the version properly."
+            exit 1
+          fi
+
+          # Verify version doesn't already exist on PyPI
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://pypi.org/pypi/prompt-decorators/$VERSION/json)
+          if [ "$HTTP_STATUS" -eq "200" ]; then
+            echo "Error: Version $VERSION already exists on PyPI."
+            echo "Please bump version using scripts/bump_version.py before releasing."
+            exit 1
+          fi
+
+          echo "✅ Version verification successful. Proceeding with release..."
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          # Configure Poetry to handle hash verification issues
+          poetry config installer.no-binary :none:
+          poetry install
+
+      # Prepare build (copy registry files)
+      - name: Prepare build
+        run: python scripts/prepare_build.py
+
+      # Build the package using Poetry
+      - name: Build package
+        run: poetry build
+
+      # Store the distribution packages for other jobs to use
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      # Publish to PyPI using trusted publishing
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          verbose: true
+
+  # Add a new job for signing packages with Sigstore
+  sign-and-publish:
+    name: Sign packages with Sigstore and publish to GitHub Release
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required for creating GitHub Releases
+      id-token: write  # Required for Sigstore signing
+
+    steps:
+      # Download the built packages from the previous job
+      - name: Download distribution packages
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      # Sign the packages with Sigstore
+      - name: Sign the distribution packages with Sigstore
+        uses: sigstore/gh-action-sigstore-python@v3.0.0
+        with:
+          inputs: >-
+            ./dist/*.tar.gz
+            ./dist/*.whl
+
+      # Upload the signed packages to the GitHub Release
+      - name: Upload artifacts to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # The release should already exist as this workflow is triggered by release creation
+          # Upload all files in dist/ including the signatures
+          gh release upload "${GITHUB_REF_NAME}" dist/* --repo "${GITHUB_REPOSITORY}"

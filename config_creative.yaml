@@ -1,0 +1,41 @@
+adaptive_config:
+  enabled: true
+  problem_types:
+    creative:
+      decorators:
+      - StepByStep
+      - Reasoning
+      reasoning_depth: moderate
+      temperature: 0.9
+plangen:
+  best_of_n:
+    n_plans: 8
+    num_solutions: 3
+    parallel: true
+    sampling_strategy: diverse
+  evaluation:
+    num_samples: 5
+    output_dir: results_creative
+    save_formats:
+    - json
+    - csv
+  model:
+    model_type: ollama
+    name: llama3:8b
+    temperature: 0.9
+prompt_decorators:
+  decorator_configs:
+    Debate:
+      balanced: false
+      perspectives: 5
+    Reasoning:
+      depth: moderate
+    Socratic:
+      iterations: 4
+    StepByStep:
+      numbered: false
+  enabled_decorators:
+  - StepByStep
+  - Reasoning
+  - Socratic
+  - Debate

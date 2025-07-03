@@ -1,0 +1,422 @@
+# PlanGEN GAIA Configuration Interface
+# This file configures all aspects of the PlanGEN system and prompt decorators
+
+# =============================================================================
+# CORE PLANGEN CONFIGURATION
+# =============================================================================
+plangen:
+  # Model Configuration
+  model:
+    name: "llama3:8b"           # LLM model to use
+    temperature: 0.7            # Creativity level (0.0-1.0)
+    model_type: "ollama"        # Model interface type
+  
+  # Best of N Algorithm Configuration
+  best_of_n:
+    n_plans: 5                  # Number of initial plans to generate
+    sampling_strategy: "diverse" # Strategy: "basic", "diverse", "adaptive"
+    parallel: true              # Enable parallel processing
+    num_solutions: 3            # Number of final solutions to return
+  
+  # Evaluation Configuration
+  evaluation:
+    num_samples: 1              # Number of GAIA samples to process (null = all)
+    output_dir: "results"       # Directory for saving results
+    save_formats: ["json", "csv"] # Output formats to save
+
+# =============================================================================
+# PROMPT DECORATOR CONFIGURATION (NEW FRAMEWORK)
+# =============================================================================
+prompt_decorators:
+  # Framework Configuration
+  framework:
+    registry_path: "prompt-decorators-main/prompt_decorators/registry"
+    auto_load: true
+    cache_enabled: true
+  
+  # Challenger Decorators (Reasoning Category) - ALL AVAILABLE
+  challenger_decorators:
+    enabled:
+      # Core reasoning decorators
+      - "Socratic"
+      - "Debate"
+      - "StepByStep"
+      - "Reasoning"
+      - "FirstPrinciples"
+      - "TreeOfThought"
+      - "RedTeam"
+      
+      # Additional reasoning decorators
+      - "Abductive"
+      - "Analogical"
+      - "BlindSpots"
+      - "Contrarian"
+      - "Deductive"
+      - "ForcedAnalogy"
+      - "Inductive"
+      - "NegativeSpace"
+      - "PerspectiveCascading"
+      - "RootCause"
+      - "TemporalReasoning"
+    
+    # Individual decorator configurations
+    configs:
+      # Core reasoning decorators
+      Socratic:
+        iterations: 3          # Number of question-answer cycles (1-5)
+      
+      Debate:
+        perspectives: 3        # Number of perspectives (1-5)
+        structure: "sequential" # "alternating", "sequential", "comparative"
+        balanced: true         # Ensure balanced viewpoints
+      
+      StepByStep:
+        numbered: true
+        detailed: true
+      
+      Reasoning:
+        depth: "comprehensive"  # "basic", "moderate", "comprehensive"
+        type: "deductive"      # "deductive", "inductive", "abductive"
+      
+      FirstPrinciples:
+        breakdown_level: "detailed"  # "basic", "detailed", "exhaustive"
+      
+      TreeOfThought:
+        branches: 3           # Number of reasoning branches
+        depth: 2              # Depth of reasoning tree
+      
+      RedTeam:
+        perspectives: 2       # Number of opposing viewpoints
+        thoroughness: "high"  # "low", "medium", "high"
+      
+      # Additional reasoning decorators
+      Abductive:
+        hypotheses: 3         # Number of alternative hypotheses (2-5)
+        criteria: ["simplicity", "explanatory_power", "testability"]
+        rank: true           # Rank hypotheses by likelihood
+      
+      Analogical:
+        analogies: 2         # Number of analogies to draw
+        domains: ["nature", "technology", "society"]
+        mapping: "explicit"  # "implicit", "explicit"
+      
+      BlindSpots:
+        perspectives: 3      # Number of perspectives to consider
+        bias_types: ["confirmation", "anchoring", "availability"]
+        mitigation: true     # Suggest mitigation strategies
+      
+      Contrarian:
+        positions: 2         # Number of contrarian positions
+        evidence_required: true
+        respectful: true     # Maintain respectful tone
+      
+      Deductive:
+        premises: 3          # Number of premises to establish
+        logical_structure: "syllogistic"  # "syllogistic", "conditional", "categorical"
+        validity_check: true
+      
+      ForcedAnalogy:
+        source_domains: ["biology", "physics", "economics"]
+        target_domains: ["technology", "society", "individual"]
+        mapping_strength: "strong"  # "weak", "moderate", "strong"
+      
+      Inductive:
+        observations: 5      # Number of observations to consider
+        generalization_level: "moderate"  # "specific", "moderate", "broad"
+        confidence_level: "medium"  # "low", "medium", "high"
+      
+      NegativeSpace:
+        dimensions: 3        # Number of dimensions to explore
+        exploration_depth: "comprehensive"  # "basic", "moderate", "comprehensive"
+        counterfactual: true
+      
+      PerspectiveCascading:
+        levels: 3           # Number of perspective levels
+        cascade_type: "hierarchical"  # "hierarchical", "network", "temporal"
+        integration: true   # Integrate perspectives
+      
+      RootCause:
+        levels: 3           # Number of causal levels
+        analysis_type: "systematic"  # "systematic", "intuitive", "structured"
+        solutions: true     # Suggest solutions
+      
+      TemporalReasoning:
+        timeframes: ["past", "present", "future"]
+        causality: true     # Consider causal relationships
+        prediction: true    # Make predictions
+
+  # Verification Decorators (Verification Category) - ALL AVAILABLE
+  verification_decorators:
+    enabled:
+      # Core verification decorators
+      - "FactCheck"
+      - "PeerReview"
+      - "CiteSources"
+      - "Confidence"
+      - "Limitations"
+      - "QualityMetrics"
+      - "StressTest"
+      
+      # Additional verification decorators
+      - "Balanced"
+      - "BreakAndBuild"
+      - "FindGaps"
+      - "Precision"
+      - "Steelman"
+      - "Uncertainty"
+    
+    # Individual decorator configurations
+    configs:
+      # Core verification decorators
+      FactCheck:
+        confidence: 0.8        # Confidence threshold (0.0-1.0)
+        uncertain: true        # Flag uncertain claims
+        strictness: "high"     # "low", "medium", "high"
+      
+      PeerReview:
+        criteria: ["accuracy", "clarity", "completeness", "logic"]
+        style: "constructive"  # "constructive", "critical"
+        position: "neutral"    # "supportive", "neutral", "critical"
+      
+      CiteSources:
+        style: "inline"        # "inline", "footnote", "endnote"
+        format: "APA"          # "APA", "MLA", "Chicago", "Harvard", "IEEE"
+        comprehensive: true    # Cite every claim (true/false)
+      
+      Confidence:
+        threshold: 0.7         # Confidence threshold for assertions
+        uncertainty_marking: true
+        calibration: "strict"  # "lenient", "moderate", "strict"
+      
+      Limitations:
+        scope: "comprehensive" # "basic", "moderate", "comprehensive"
+        include_assumptions: true
+        acknowledge_uncertainty: true
+      
+      QualityMetrics:
+        dimensions: ["accuracy", "completeness", "clarity", "relevance"]
+        scoring: "detailed"    # "basic", "detailed", "comprehensive"
+      
+      StressTest:
+        scenarios: 3           # Number of edge cases to test
+        robustness: "high"     # "low", "medium", "high"
+      
+      # Additional verification decorators
+      Balanced:
+        perspectives: 2        # Number of perspectives (2-5)
+        structure: "sequential" # "alternating", "sequential", "comparative"
+        equal: true           # Equal representation
+      
+      BreakAndBuild:
+        components: 3         # Number of components to break down
+        reconstruction: true  # Reconstruct after breaking
+        insights: true        # Extract insights
+      
+      FindGaps:
+        categories: ["information", "logic", "evidence", "perspective"]
+        depth: "comprehensive" # "basic", "moderate", "comprehensive"
+        suggestions: true     # Suggest improvements
+      
+      Precision:
+        language: "technical" # "general", "technical", "academic"
+        specificity: "high"   # "low", "medium", "high"
+        ambiguity_check: true
+      
+      Steelman:
+        positions: 2          # Number of positions to strengthen
+        strength_level: "maximum" # "moderate", "strong", "maximum"
+        fairness: true        # Ensure fairness
+      
+      Uncertainty:
+        sources: ["data", "methodology", "assumptions", "context"]
+        quantification: true  # Quantify uncertainty
+        communication: "clear" # "minimal", "clear", "detailed"
+
+  # Early Verification Decorators - Limited Set for Quick Verification
+  early_verification_decorators:
+    enabled:
+      - "FactCheck"
+      - "CiteSources"
+      - "Confidence"
+      - "Precision"
+    
+    # Individual decorator configurations for early verification
+    configs:
+      FactCheck:
+        confidence: 0.7        # Lower threshold for early verification
+        uncertain: true        # Flag uncertain claims
+        strictness: "medium"   # Moderate strictness for speed
+      
+      CiteSources:
+        style: "inline"        # Inline citations for speed
+        format: "APA"          # Standard format
+        comprehensive: false   # Not comprehensive for early verification
+      
+      Confidence:
+        threshold: 0.6         # Lower threshold for early verification
+        uncertainty_marking: true
+        calibration: "moderate" # Moderate calibration
+      
+      Precision:
+        language: "general"    # General language for speed
+        specificity: "medium"  # Moderate specificity
+        ambiguity_check: true
+
+# =============================================================================
+# VERIFICATION CONFIGURATION
+# =============================================================================
+verification:
+  # Verification agent configuration
+  agent:
+    type: "robust"           # "standard", "robust", "llm"
+    model_name: "llama3:8b"
+    temperature: 0.1         # Lower temperature for verification
+  
+  # GAIA verifier configuration
+  gaia_verifier:
+    type: "yaml"             # "rule_based", "llm", "yaml"
+    model_name: "llama3:8b"
+    temperature: 0.1
+    use_framework_decorators: true  # Use new prompt decorators framework
+  
+  # Early verification configuration
+  early_verification:
+    enabled: true            # Enable early verification
+    decorators: ["FactCheck", "CiteSources", "Confidence", "Precision"]
+    temperature: 0.1         # Lower temperature for quick verification
+    strictness: "medium"     # Moderate strictness for speed
+
+# =============================================================================
+# PERFORMANCE CONFIGURATION
+# =============================================================================
+performance:
+  # Parallel processing configuration
+  parallel:
+    enabled: true
+    max_workers: 4           # Maximum parallel workers
+  
+  # Caching configuration
+  caching:
+    enabled: true
+    cache_dir: ".cache"
+    max_cache_size: "1GB"
+  
+  # Timeout configuration
+  timeouts:
+    plan_generation: 300     # Seconds per plan
+    verification: 120        # Seconds per verification
+    total_per_sample: 1800   # Total seconds per sample
+
+# =============================================================================
+# LOGGING AND OUTPUT CONFIGURATION
+# =============================================================================
+logging:
+  level: "INFO"              # "DEBUG", "INFO", "WARNING", "ERROR"
+  console_output: true
+  file_output: true
+  log_file: "plangen.log"
+  
+  # Detailed logging options
+  detailed:
+    log_decorator_applications: true
+    log_verification_scores: true
+    log_plan_generation: true
+    log_timing: true
+
+# =============================================================================
+# EXPERIMENTAL CONFIGURATION
+# =============================================================================
+experimental:
+  # Advanced decorator combinations
+  decorator_combinations:
+    - name: "Academic"
+      challenger_decorators: ["Reasoning", "Socratic", "FirstPrinciples", "Deductive", "Inductive"]
+      verification_decorators: ["CiteSources", "FactCheck", "PeerReview", "Precision"]
+      params:
+        reasoning_depth: "comprehensive"
+        citation_comprehensive: true
+        fact_check_strictness: "high"
+    
+    - name: "Creative"
+      challenger_decorators: ["StepByStep", "Reasoning", "TreeOfThought", "Analogical", "ForcedAnalogy"]
+      verification_decorators: ["Confidence", "Limitations", "Uncertainty"]
+      params:
+        reasoning_depth: "moderate"
+        temperature: 0.9
+    
+    - name: "Analytical"
+      challenger_decorators: ["Socratic", "Reasoning", "RedTeam", "Abductive", "RootCause"]
+      verification_decorators: ["FactCheck", "QualityMetrics", "StressTest", "FindGaps"]
+      params:
+        socratic_iterations: 5
+        reasoning_depth: "comprehensive"
+        fact_check_strictness: "high"
+    
+    - name: "Comprehensive"
+      challenger_decorators: ["PerspectiveCascading", "NegativeSpace", "BlindSpots", "TemporalReasoning"]
+      verification_decorators: ["BreakAndBuild", "Steelman", "Balanced", "Uncertainty"]
+      params:
+        complexity_handling: "systematic"
+        thoroughness: "maximum"
+  
+  # Custom value maps (override default decorator behavior)
+  custom_value_maps:
+    Reasoning:
+      depth:
+        minimal: "Provide only essential reasoning steps."
+        standard: "Include clear reasoning with key insights."
+        detailed: "Provide comprehensive reasoning with examples."
+        expert: "Include expert-level analysis with deep insights."
+
+# =============================================================================
+# ENVIRONMENT CONFIGURATION
+# =============================================================================
+environment:
+  # API keys and tokens
+  api_keys:
+    openai: null              # Set your OpenAI API key here
+    anthropic: null           # Set your Anthropic API key here
+    huggingface: null         # Set your HuggingFace token here
+  
+  # Model endpoints
+  endpoints:
+    ollama: "http://localhost:11434"
+    openai: "https://api.openai.com/v1"
+    anthropic: "https://api.anthropic.com"
+  
+  # Dataset configuration
+  dataset:
+    name: "gaia-benchmark/GAIA"
+    split: "validation"
+    subset: "2023_all"
+
+# =============================================================================
+# VALIDATION RULES
+# =============================================================================
+validation:
+  # Parameter validation rules
+  rules:
+    temperature:
+      min: 0.0
+      max: 1.0
+      default: 0.7
+    
+    n_plans:
+      min: 1
+      max: 20
+      default: 5
+    
+    socratic_iterations:
+      min: 1
+      max: 5
+      default: 3
+    
+    debate_perspectives:
+      min: 1
+      max: 5
+      default: 3
+    
+    confidence:
+      min: 0.0
+      max: 1.0
+      default: 0.8 

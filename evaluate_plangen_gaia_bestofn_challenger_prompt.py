@@ -7,6 +7,7 @@ from typing import List, Dict, Any
 from pathlib import Path
 from rich.console import Console
 from rich.table import Table
+from datetime import datetime
 
 console = Console()
 
@@ -97,7 +98,7 @@ def evaluate_by_level(predictions: List[str], ground_truth: List[str], levels: L
 
 def main():
     # Load results file
-    results_file = Path("results/plangen_gaia_bestofn_prompt_challenger_results.json")
+    results_file = Path("results/plangen_gaia_bestofn_prompt_challenger_results_run3_10samples.json")
     console.print(f"[bold blue]Looking for results file at: {results_file.absolute()}[/bold blue]")
     
     if not results_file.exists():
@@ -212,7 +213,8 @@ def main():
     results_dir.mkdir(parents=True, exist_ok=True)
     
     # Save results
-    results_file = results_dir / "evaluation_results_BestofN_Prompt_Challenger.json"
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    results_file = results_dir / f"evaluation_results_BestofN_Prompt_Challenger_run3_10samples_{timestamp}.json"
     with open(results_file, 'w') as f:
         json.dump(detailed_results, f, indent=2)
     

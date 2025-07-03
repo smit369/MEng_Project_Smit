@@ -1,0 +1,93 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "prompt-decorators"
+version = "0.9.0"
+description = "A framework for defining, managing, and applying prompt decorators to enhance interactions with LLMs"
+authors = ["Daniel Bentes <promptdecorators@synapti.ai>"]
+readme = "README.md"
+license = "Apache-2.0"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+
+[tool.poetry.urls]
+Documentation = "https://synaptiai.github.io/prompt-decorators/"
+Source = "https://github.com/synaptiai/prompt-decorators"
+"Issue Tracker" = "https://github.com/synaptiai/prompt-decorators/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+pydantic = "^2.0.0"
+jsonschema = "^4.0.0"
+importlib-metadata = "^6.0.0"
+markdown = "^3.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+black = ">=23,<25"
+isort = "^5.0.0"
+mypy = "^1.0.0"
+pytest-cov = "^4.0.0"
+ruff = "^0.1.0"
+pre-commit = "^4.1.0"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.0.0"
+sphinx-rtd-theme = "^1.0.0"
+myst-parser = "^2.0.0"
+mkdocs = "^1.5.0"
+mkdocs-material = "^9.0.0"
+mkdocs-awesome-pages-plugin = "^2.9.0"
+mkdocs-autolinks-plugin = "^0.7.0"
+mkdocs-git-revision-date-localized-plugin = "^1.2.0"
+mkdocstrings = "^0.24.0"
+
+[tool.poetry.group.langchain.dependencies]
+langchain = ">=0.0.200"
+
+[tool.poetry.group.openai.dependencies]
+openai = ">=0.27.0"
+
+[tool.poetry.group.anthropic.dependencies]
+anthropic = ">=0.3.0"
+
+[tool.poetry.group.mcp.dependencies]
+mcp = {version = ">=0.1.0", python = ">=3.11"}
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+python_classes = "Test*"
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "B", "I"]
+ignore = []

@@ -8,6 +8,7 @@ from .base_verifier import BaseVerifier
 from .strategies.math_verifier import MathVerifier
 from .strategies.mentat_verifier import MentatVerifier
 from .strategies.gaia_verifier import GaiaVerifier
+from .strategies.gaia_verifier_llm import GaiaVerifierLLM
 
 
 class VerifierFactory:
@@ -24,6 +25,7 @@ class VerifierFactory:
             MathVerifier(),
             MentatVerifier(),
             GaiaVerifier(),
+            GaiaVerifierLLM(),  # Add the new LLM-based verifier
             # Add more verifiers here as they are implemented
         ]
 

@@ -1,0 +1,77 @@
+{
+  "decoratorName": "DecoratorName",
+  "version": "1.0.0",
+  "description": "A detailed description of what the decorator does, its purpose, and how it modifies AI behavior.",
+  "author": {
+    "name": "Prompt Decorators Working Group",
+    "email": "promptdecoratorspec@synapti.ai",
+    "url": "https://synapti.ai"
+  },
+  "parameters": [
+    {
+      "name": "parameterName",
+      "type": "string",
+      "description": "Description of what this parameter does",
+      "required": false,
+      "default": "defaultValue",
+      "enum": ["option1", "option2", "option3"],
+      "min": 0,
+      "max": 10,
+      "pattern": "^[A-Za-z0-9]+$"
+    }
+  ],
+  "transformationTemplate": {
+    "instruction": "Base instruction text that will be added to the prompt.",
+    "parameterMapping": {
+      "parameterName": {
+        "valueMap": {
+          "option1": "Apply option1 transformation.",
+          "option2": "Apply option2 transformation.",
+          "option3": "Apply option3 transformation."
+        },
+        "format": "with {value} customization"
+      }
+    },
+    "placement": "append",
+    "compositionBehavior": "accumulate"
+  },
+  "implementationGuidance": {
+    "examples": [
+      {
+        "context": "Example for gpt-4o",
+        "originalPrompt": "Tell me about artificial intelligence.",
+        "transformedPrompt": "Tell me about artificial intelligence. [Transformation applied with option1]",
+        "notes": "This demonstrates how the decorator modifies the prompt."
+      }
+    ],
+    "compatibilityNotes": [
+      {
+        "decorator": "AnotherDecorator",
+        "relationship": "enhances",
+        "notes": "Works well with AnotherDecorator by adding complementary instructions."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "description": "Example of how to use this decorator with specific parameters",
+      "usage": "+++DecoratorName(parameterName=option1)\nUser prompt text goes here",
+      "result": "Expected behavior or output pattern from this decorator",
+      "prompt": "Tell me about artificial intelligence.",
+      "parameters": {
+        "parameterName": "option1"
+      }
+    }
+  ],
+  "compatibility": {
+    "requires": [],
+    "conflicts": [],
+    "minStandardVersion": "1.0.0",
+    "maxStandardVersion": "2.0.0",
+    "models": [
+      "gpt-4o",
+      "gpt-4-turbo"
+    ]
+  },
+  "category": "Instruction"
+}
